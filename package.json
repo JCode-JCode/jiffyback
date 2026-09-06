@@ -1,0 +1,54 @@
+{
+  "name": "jiffyback",
+  "version": "1.0.0",
+  "description": "Ultra-simple, flexible Node.js backend framework for web designers - build your entire backend in plain JavaScript, no PHP (or any dependency) required.",
+  "main": "./src/index.js",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "scripts": {
+    "test": "node --test",
+    "dev": "node examples/simple-api/app.js",
+    "dev:advanced": "node examples/advanced/app.js",
+    "prepublishOnly": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JCode-JCode/jiffyback.git"
+  },
+  "keywords": [
+    "backend",
+    "framework",
+    "server",
+    "http",
+    "router",
+    "middleware",
+    "rest-api",
+    "websocket",
+    "template-engine",
+    "validation",
+    "database",
+    "sqlite",
+    "zero-dependency",
+    "designers",
+    "nodejs"
+  ],
+  "author": "J Code",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/JCode-JCode/jiffyback/issues"
+  },
+  "homepage": "https://github.com/JCode-JCode/jiffyback#readme",
+  "engines": {
+    "node": ">=18.9.0"
+  },
+  "files": [
+    "src/",
+    "README.md",
+    "LICENSE",
+    "NOTICE",
+    "CHANGELOG.md"
+  ],
+  "dependencies": {}
+}
