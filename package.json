@@ -41,7 +41,7 @@
   },
   "homepage": "https://github.com/JCode-JCode/jiffyback#readme",
   "engines": {
-    "node": ">=18.9.0"
+    "node": ">=22.5.0"
   },
   "files": [
     "src/",
