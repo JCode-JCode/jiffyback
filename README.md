@@ -1,4 +1,4 @@
-[![Node.js Version](https://img.shields.io/badge/node-18.9%2B-green)](https://nodejs.org/)
+[![Node.js Version](https://img.shields.io/node/v/jiffyback)](https://nodejs.org/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![npm version](https://img.shields.io/npm/v/jiffyback)](https://www.npmjs.com/package/jiffyback)
