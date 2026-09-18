@@ -1,3 +1,5 @@
+// Copyright 2026 J Code
+// SPDX-License-Identifier: Apache-2.0
 import { createRequire } from 'node:module';
 
 const IDENTIFIER_RE = /^[A-Za-z_][A-Za-z0-9_]*$/;

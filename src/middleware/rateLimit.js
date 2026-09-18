@@ -1,3 +1,5 @@
+// Copyright 2026 J Code
+// SPDX-License-Identifier: Apache-2.0
 const DEFAULT_MAX_KEYS = 50_000;
 
 export class MemoryStore {

@@ -1,3 +1,5 @@
+// Copyright 2026 J Code
+// SPDX-License-Identifier: Apache-2.0
 import { parseURL } from './utils/urlParser.js';
 
 function normalizeIp(addr) {

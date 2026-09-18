@@ -1,3 +1,5 @@
+// Copyright 2026 J Code
+// SPDX-License-Identifier: Apache-2.0
 const COLORS = { 2: '32', 3: '36', 4: '33', 5: '31' };
 
 function stripControlChars(str) {

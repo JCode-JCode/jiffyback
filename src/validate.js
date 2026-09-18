@@ -1,3 +1,5 @@
+// Copyright 2026 J Code
+// SPDX-License-Identifier: Apache-2.0
 export class ValidationError extends Error {
   constructor(issues) {
     super(`Validation failed: ${issues.map((i) => `${i.path || '(root)'}: ${i.message}`).join('; ')}`);

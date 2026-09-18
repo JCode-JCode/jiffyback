@@ -1,3 +1,5 @@
+// Copyright 2026 J Code
+// SPDX-License-Identifier: Apache-2.0
 export { createServer, Server } from './server.js';
 export { Router } from './router.js';
 export { serveStatic } from './middleware/static.js';

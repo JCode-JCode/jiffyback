@@ -1,3 +1,5 @@
+// Copyright 2026 J Code
+// SPDX-License-Identifier: Apache-2.0
 export function cors(options = {}) {
   const origin = options.origin ?? '*';
   const methods = options.methods || 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS';

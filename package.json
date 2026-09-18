@@ -1,6 +1,6 @@
 {
   "name": "jiffyback",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Ultra-simple, flexible Node.js backend framework for web designers - build your entire backend in plain JavaScript, no PHP (or any dependency) required.",
   "main": "./src/index.js",
   "type": "module",

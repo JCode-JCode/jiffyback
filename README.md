@@ -43,7 +43,7 @@ That's it - no config file, no build step, nothing to install beyond `jiffyback`
 
 ## Main Capabilities
 
-- **HTTP & HTTPS Server** - `createServer`/`Server` wraps Node's own `http`/`https` modules with a friendly, chainable API (`app.get()`, `app.post()`, `app.use()`, ...) and sane, explicit timeout handling.
+- **HTTP, HTTPS & HTTP/2 Server** - `createServer`/`Server` wraps Node's own `http`/`https`/`http2` modules with a friendly, chainable API (`app.get()`, `app.post()`, `app.use()`, ...), sane, explicit timeout handling (`headersTimeout`, `requestTimeout`, `keepAliveTimeout`), and opt-in HTTP/2 (`options.http2`) over TLS with automatic fallback to HTTP/1.1 for clients that don't speak h2.
 
 - **Router** - a full-featured `Router` with route params (`:id`), optional params (`:id?`), wildcards (`*`), automatic `HEAD` handling, error middleware, and mountable sub-routers for organizing larger apps.
 
@@ -71,7 +71,7 @@ That's it - no config file, no build step, nothing to install beyond `jiffyback`
 npm install jiffyback
 ```
 
-jiffyback has **zero runtime dependencies**. The only thing worth calling out is `sqliteAdapter()`, which uses Node's built-in (currently experimental) `node:sqlite` module and therefore needs **Node.js 22.5+**; every other part of the library only requires the package's minimum, **Node.js 18.9+**.
+jiffyback has **zero runtime dependencies**. It requires **Node.js 22.5+** across the board - this is also what `sqliteAdapter()` needs for Node's built-in (currently experimental) `node:sqlite` module, and the package's `engines` field enforces this minimum for the whole library.
 
 ---
 
@@ -150,6 +150,27 @@ app.ws('/chat', (ws, req) => {
 });
 ```
 
+### Serving over HTTP/2
+
+```javascript
+import { readFileSync } from 'fs';
+import { createServer } from 'jiffyback';
+
+const app = createServer({
+  http2: true,
+  https: {
+    key: readFileSync('./certs/key.pem'),
+    cert: readFileSync('./certs/cert.pem'),
+  },
+});
+
+app.get('/', (req, res) => res.send('Hello over HTTP/2!'));
+
+app.listen(3000);
+```
+
+`options.http2` requires `options.https` (TLS) - browsers only speak HTTP/2 over TLS. Clients that don't support h2 automatically fall back to HTTP/1.1 (`allowHTTP1: true`).
+
 ---
 
 ## Bundled Examples
@@ -206,4 +227,4 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 
 ---
 
-Designed and built with love by **J Code**
+Designed and built with love by **J Code❤️**

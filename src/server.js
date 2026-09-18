@@ -1,5 +1,8 @@
+// Copyright 2026 J Code
+// SPDX-License-Identifier: Apache-2.0
 import http from 'http';
 import https from 'https';
+import http2 from 'http2';
 import { enhanceRequest } from './request.js';
 import { enhanceResponse } from './response.js';
 import { Router } from './router.js';
@@ -73,14 +76,26 @@ export class Server {
 
     const listener = this._requestListener.bind(this);
 
-    this.server = this.options.https
-      ? https.createServer(this.options.https, listener)
-      : http.createServer(listener);
+    if (this.options.http2) {
+      if (!this.options.https) {
+        throw new Error(
+          'jiffyback: options.http2 requires TLS - pass options.https { key, cert } too ' +
+            '(browsers only speak HTTP/2 over TLS; plaintext h2c has no practical browser support).'
+        );
+      }
+      this.server = http2.createSecureServer({ ...this.options.https, allowHTTP1: true }, listener);
+    } else {
+      this.server = this.options.https
+        ? https.createServer(this.options.https, listener)
+        : http.createServer(listener);
+    }
 
     const timeouts = this.options.timeouts || {};
     this.server.headersTimeout = timeouts.headersTimeout ?? 0;
     this.server.requestTimeout = timeouts.requestTimeout ?? 0;
-    this.server.keepAliveTimeout = timeouts.keepAliveTimeout ?? 5_000;
+    if ('keepAliveTimeout' in this.server) {
+      this.server.keepAliveTimeout = timeouts.keepAliveTimeout ?? 5_000;
+    }
 
     if (this.wsRoutes.size > 0) {
       attachWebSocket(this.server, this.wsRoutes, this.options.websocket || {});
